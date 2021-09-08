@@ -35,7 +35,7 @@ def rest_api():
 
         parameters = {col: [sample.loc[col]] for col in COLUMNS}
 
-        rest_request = requests.get('http://127.0.0.1:5000/predict_churn', params=parameters)
+        rest_request = requests.get('https://herokubazham.herokuapp.com/predict_churn', params=parameters)
         rest_pred = int(rest_request.text.rsplit("</h1>")[1])
 
         rest_preds.append(rest_pred)

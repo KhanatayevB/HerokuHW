@@ -5,6 +5,7 @@
 import pandas as pd
 import pickle
 from flask import Flask, request
+import os
 
 app = Flask("__name__")
 
@@ -50,4 +51,9 @@ def flask_api(model):
 if __name__ == "__main__":
     model = unpickled_model()
     flask_api(model)
-    app.run(debug=True)
+    port = os.environ.get('PORT')
+    if port:
+        app.run(host='0.0.0.0', port=int(port))
+    else:
+        app.run(debug=True)
+    
